@@ -6,9 +6,9 @@ DOMOURL="http://127.0.0.1:8080/json.htm?type=command&param=udevice&idx=%d&svalue
 #         W-wa IMGW Gda P Płn Wro lotn
 #OPAD_IDS=(252200150 254180260 351160424 252200150 252200150)
 OPAD_IDS=(254180260 351160424 252200150 252200150)
-#                  v--- counter
+#               v--- counter
 OPAD_IDX=(59 60 61 62) # domoticz index
-#                     ^--- counter incremental
+#                  ^--- counter incremental
 
 for ST in ${!OPAD_IDS[@]}; do
     ST_ID=${OPAD_IDS[${ST}]}
