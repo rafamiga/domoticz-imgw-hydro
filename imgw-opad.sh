@@ -29,7 +29,7 @@ for ST in ${!OPAD_IDS[@]}; do
 
 #    cat ${TMP} | jq
     STAN=$(cat ${TMP} | jq '.status.precip.value')
-#    curl -s $(printf "${DOMOURL}" ${OPAD_IDX[ST]} ${STAN}) > /dev/null
+    curl -s $(printf "${DOMOURL}" ${OPAD_IDX[ST]} ${STAN}) > /dev/null
 
     rm "${TMP}"
 done
