@@ -25,12 +25,14 @@ TMP=$(mktemp)
 wget -q -O ${TMP} ${SRCURL}
 
 for ST in ${!ST_ID[@]}; do
-    if [[ ${ST_ID[ST]} =~ :direct ]]; then
-	URL_DIRECT=$(printf "${SRCDIRECT}" ${ST_ID[ST]#:*})
+    STID="${ST_ID[ST]}"	 
+    if [[ ${STID} =~ :direct ]]; then
+	STID="${STID%:*}"
+	URL_DIRECT=$(printf "${SRCDIRECT}" ${STID})
 	# echo ${URL_DIRECT}
 	STAN=$(curl -s ${URL_DIRECT} | jq '.status.currentState.value')
     else
-	STAN=$(jq --arg st_id "${ST_ID[ST]}" -r -c '.[] | select (.id_stacji == "$st_id") | .stan_wody' ${TMP}) 
+	STAN=$(jq --arg st_id "${STID}" -r -c '.[] | select (.id_stacji == $st_id) | .stan_wody' ${TMP}) 
     fi
 
     if [ "${STAN}" == "null" ]; then
